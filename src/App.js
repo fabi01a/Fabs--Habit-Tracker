@@ -55,7 +55,14 @@ function App() {
         </div>
         <ul className="list-disc">
           {habitList.map((habit,index) => (
-            <li key={index}>{habit}</li>
+            <div key={index} className="flex items-center mb-2">
+              <input
+                type="checkbox"
+                id={`habit-${index}`}
+                className="mr-2"
+              />
+              <label htmlFor={`habit-${index}`}>{habit}</label>
+            </div>
           ))}
         </ul>
           <MyDatePicker />
