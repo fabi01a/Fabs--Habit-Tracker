@@ -10,6 +10,11 @@ function MyDatePicker() {
             mode="single"
             selected={selected}
             onSelect={setSelected}
+            classNames={{
+                day: "custom-day",
+                selected: "custom-selected",
+                today: "custom-today",
+            }}
         />
     );
 }
