@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { MantineProvider } from '@mantine/core'
 import logo from './logo.svg';
 import './App.css';
-import HabitCalendar from './HabitCalendar.jsx';
+import MyDatePicker from './MyDatePicker.jsx';
+
 
 function App() {
   //define state of input field
@@ -30,40 +30,37 @@ function App() {
   };
   
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1>
-            Fabs' Habit Tracker
-          </h1>
-          <div className="w-full max-w-sm min-w-[200px]">
-            <input 
-              className="placeholder:text-slate-700 text-sm border border-slate-200 rounded-full px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow placeholder:text-slate-400 mb-5"
-              style={{ color:'black' }}
-              // placeholder="Build A Habit!"
-              value={userInput}
-              onChange={handleInputChange}
-            />
-          </div>
-          <button 
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-4"
-            onClick={handleSubmit}
-            >
-            Add
-          </button>
-          <div>
-            Learn To Build Good Habits
-          </div>
-          <ul className="list-disc">
-            {habitList.map((habit,index) => (
-              <li key={index}>{habit}</li>
-            ))}
-          </ul>
-          <HabitCalendar />
-        </header>
-      </div>
-    </MantineProvider>
+    <div className="App">
+      <header className="App-header flex flex-col items-center">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1>
+          Fabs' Habit Tracker
+        </h1>
+        <div className="w-full max-w-sm min-w-[200px]">
+          <input 
+            className="placeholder:text-slate-700 text-sm border border-slate-200 rounded-full px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow placeholder:text-slate-400 mb-5"
+            style={{ color:'black' }}
+            value={userInput}
+            onChange={handleInputChange}
+          />
+        </div>
+        <button 
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-4"
+          onClick={handleSubmit}
+          >
+          Add
+        </button>
+        <div>
+          Learn To Build Good Habits
+        </div>
+        <ul className="list-disc">
+          {habitList.map((habit,index) => (
+            <li key={index}>{habit}</li>
+          ))}
+        </ul>
+          <MyDatePicker />
+      </header>
+    </div>
   );
 }
 
