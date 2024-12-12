@@ -16,6 +16,9 @@ function App() {
   //state to track if all tasks are completed
   const [allCompleted, setAllCompleted] = useState(false);
 
+  //state to update today background when all tasks completed
+  const [highlightToday, setHighlightToday] = useState(false);
+
   //handle user input change
   const handleInputChange = (event) => {
     setUserInput(event.target.value);
@@ -25,9 +28,10 @@ function App() {
   const handleSubmit = () => {
     // if userinput is not empty including white space
     if (userInput.trim() !== '') {
-      // call setHabitList on userInput
+      // Updates the habitList state: call setHabitList on userInput, setting it to begin at false
       setHabitlist([...habitList, { text: userInput, completed: false }]);
       console.log(userInput);
+      //setting the event on an empty string
       setUserInput('');
     }
   };
@@ -37,13 +41,14 @@ function App() {
     const updatedHabits = habitList.map((habit, i) =>
       i === index ? { ...habit, completed: !habit.completed } : habit
     );
-    setHabitlist(updatedHabits);
+  setHabitlist(updatedHabits);
   };
 
   //effect to check if all habits are completed
   useEffect(() => {
     const allDone = habitList.length > 0 && habitList.every(habit => habit.completed);
     setAllCompleted(allDone);
+    setHighlightToday(allDone);
   }, [habitList]);
   
   return (
@@ -85,7 +90,7 @@ function App() {
           ))}
         </ul>
         {allCompleted && <p>Congrats - you've completed your habits for the day! Great job!</p>}
-          <MyDatePicker allCompleted={allCompleted} />
+          <MyDatePicker allCompleted={allCompleted} highlightToday={highlightToday} />
       </header>
     </div>
   );

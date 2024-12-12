@@ -55,3 +55,7 @@
   border: 5px solid rgb(241, 154, 6);
 } 
 
+.custom-today-highlighted {
+  background-color: greenyellow; 
+  color: white;
+}
